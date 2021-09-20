@@ -14,6 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class addLoadRequest {
+    // Payload to add Load
+
     private String loadingPoint;
     private String unloadingPoint;
     private String productType;

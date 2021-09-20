@@ -20,10 +20,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class LoadServiceImpl implements LoadService{
 
+    // Repositories
     private final LoadRepository loadRepository;
     private final ShipperRepository shipperRepository;
 
 
+    /****************************************** ADD LOAD ********************************************/
     @Override
     public ResponseEntity<String> addLoad(addLoadRequest addLoadRequest) {
         Shipper shipper = shipperRepository.findById(addLoadRequest.getShipperId()).orElse(null);
@@ -43,6 +45,8 @@ public class LoadServiceImpl implements LoadService{
         return new ResponseEntity<>("loads details added successfully", HttpStatus.CREATED);
     }
 
+
+    /****************************************** GET LOADS BY SHIPPER-ID ******************************************************/
     @Override
     public ResponseEntity<loadWithShipperIdResponse> getLoadsByShipperId(UUID id) {
         List<Load> loads = loadRepository.findAll().parallelStream()
@@ -52,12 +56,18 @@ public class LoadServiceImpl implements LoadService{
         return new ResponseEntity<>( new loadWithShipperIdResponse("List of loads with shipperId : " + id, loads), HttpStatus.OK);
     }
 
+
+
+    /****************************************** GET LOAD BY ID ********************************************/
     @Override
     public ResponseEntity<Load> getLoadById(Long id) {
         Optional<Load> load = Optional.of(loadRepository.findById(id)).orElseGet(null);
         return new ResponseEntity<>(load.orElse(null),HttpStatus.OK);
     }
 
+
+
+    /****************************************** UPDATE LOAD ********************************************/
     @Override
     public ResponseEntity<Load> updateLoad(Long LoadId, addLoadRequest load) {
 
@@ -81,6 +91,8 @@ public class LoadServiceImpl implements LoadService{
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+
+    /****************************************** DELETE LOAD ********************************************/
     @Override
     public ResponseEntity<String> deleteLoad(Long id) {
         if (loadRepository.existsById(id)){
@@ -89,4 +101,5 @@ public class LoadServiceImpl implements LoadService{
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-}
+
+}// end LoadService Class

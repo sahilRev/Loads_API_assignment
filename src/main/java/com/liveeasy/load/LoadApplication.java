@@ -21,6 +21,8 @@ public class LoadApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		//Add three Shippers automatically after starting application
 		Shipper shipper1 = Shipper.builder()
 				.name("shipper1")
 				.build();

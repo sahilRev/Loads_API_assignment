@@ -1,6 +1,7 @@
 package com.liveeasy.load.payload;
 
 
+import com.liveeasy.load.Controller.LoadController;
 import com.liveeasy.load.Model.Load;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class loadWithShipperIdResponse {
+    //Response type for LoadController::getLoadsByShipperId
+
     private String message;
     private List<Load> loads;
 }
